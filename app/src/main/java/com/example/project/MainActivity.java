@@ -9,6 +9,9 @@ import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
+
+
+
     TextView textviewname;
     SharedPreferences preferences;
 
@@ -31,10 +34,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
-
-
-
 
 
     @Override
