@@ -7,7 +7,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-public class MainActivity extends AppCompatActivity {
+public class WriteActivity extends AppCompatActivity {
 
 
 
@@ -36,12 +36,5 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    @Override
-    protected void onResume() {
-        super.onResume();
 
-
-        String name = preferences.getString("name","inget namn hittades");
-        textviewname.setText(name);
-    }
 }
