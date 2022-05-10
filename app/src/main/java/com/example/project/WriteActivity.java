@@ -23,7 +23,7 @@ public class WriteActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        textviewname = findViewById(R.id.name);
+        textviewname = findViewById(R.id.spara);
 
 
 
