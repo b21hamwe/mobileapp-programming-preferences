@@ -3,40 +3,57 @@
 
 **Skriv din rapport här!**
 
-_Du kan ta bort all text som finns sedan tidigare_.
+Det första som skall göras är att skapa ett sätt för att läsa data genom Shared Preferences samt 
+skapa en ytterligare Activity. Min andra activity heter WriteActivity.java. 
 
-## Följande grundsyn gäller dugga-svar:
+Här skapar jag en medlems variabel för Shared Preferences
+///
+SharedPreferences preferences;
+///
+Här så skapar jag möjligheten för att medlems variabeln ska kunna spara ned datan som skrivs i 
+write filen. 
+///
+preferences = getSharedPreferences("preferences", MODE_PRIVATE);
 
-- Ett kortfattat svar är att föredra. Svar som är längre än en sida text (skärmdumpar och programkod exkluderat) är onödigt långt.
-- Svaret skall ha minst en snutt programkod.
-- Svaret skall inkludera en kort övergripande förklarande text som redogör för vad respektive snutt programkod gör eller som svarar på annan teorifråga.
-- Svaret skall ha minst en skärmdump. Skärmdumpar skall illustrera exekvering av relevant programkod. Eventuell text i skärmdumpar måste vara läsbar.
-- I de fall detta efterfrågas, dela upp delar av ditt svar i för- och nackdelar. Dina för- respektive nackdelar skall vara i form av punktlistor med kortare stycken (3-4 meningar).
+save.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+String input = text.getText().toString();
 
-Programkod ska se ut som exemplet nedan. Koden måste vara korrekt indenterad då den blir lättare att läsa vilket gör det lättare att hitta syntaktiska fel.
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("name",input);
+                editor.apply();
+            }
+        });
+///
 
-```
-function errorCallback(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            // Geolocation API stöds inte, gör något
-            break;
-        case error.POSITION_UNAVAILABLE:
-            // Misslyckat positionsanrop, gör något
-            break;
-        case error.UNKNOWN_ERROR:
-            // Okänt fel, gör något
-            break;
-    }
+Här hämtar vi strängen som sparades ned från Write filen till Read filen via preferences.getstring.
+samt on.resume(); som gör det möjligt att presentera strängen efter att write filen har stängts. 
+///
+@Override
+protected void onResume() {
+super.onResume();
+
+String name = preferences.getString("name","inget namn hittades");
+textviewname.setText(name);
+///
+
+Kod som gör det möjligt via en button att stänga ned write filen, "finish();" är det kommandot
+som gör det möjligt att stänga ned filen. 
+///
+Button close;
+
+close.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+finish();
 }
-```
+});
+///
 
-Bilder läggs i samma mapp som markdown-filen.
 
-![](android.png)
+![](screenshot1.png)
+![](screenshot2.png)
+![](screenshot3.png)
+![](screenshot4.png)
 
-Läs gärna:
-
-- Boulos, M.N.K., Warren, J., Gong, J. & Yue, P. (2010) Web GIS in practice VIII: HTML5 and the canvas element for interactive online mapping. International journal of health geographics 9, 14. Shin, Y. &
-- Wunsche, B.C. (2013) A smartphone-based golf simulation exercise game for supporting arthritis patients. 2013 28th International Conference of Image and Vision Computing New Zealand (IVCNZ), IEEE, pp. 459–464.
-- Wohlin, C., Runeson, P., Höst, M., Ohlsson, M.C., Regnell, B., Wesslén, A. (2012) Experimentation in Software Engineering, Berlin, Heidelberg: Springer Berlin Heidelberg.
